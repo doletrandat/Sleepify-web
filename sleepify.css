@@ -119,9 +119,23 @@ summary:hover { text-decoration: underline; text-underline-offset: .2em; }
 .photo.small { max-width: 380px; }
 .photo figcaption { font-size: 1rem; color: var(--muted); margin-top: 12px; }
 #thiet-bi { padding-top: 0; }
-.product-video { position: relative; isolation: isolate; overflow: hidden; margin: 0 0 clamp(64px, 7vw, 96px); background: #082f2b; }
-.product-video video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: contain; }
-.product-video::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(0deg, rgba(5,34,31,.82), rgba(5,34,31,.68) 220px, rgba(5,34,31,.03) 55%, rgba(5,34,31,0)); }
+.product-video { --video-top-fade: linear-gradient(180deg, var(--bg), rgba(242,248,247,0) 32px); position: relative; isolation: isolate; overflow: hidden; margin: 0 0 clamp(64px, 7vw, 96px); background: #3e5e58; }
+.product-video-media { position: relative; aspect-ratio: 16 / 9; }
+.product-video video { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; }
+/* Share the video's box and overlap the caption edge to cover fractional-pixel seams.
+   A static gradient keeps the existing single overlay and needs no live blur. */
+.product-video-media::after {
+  content: ""; position: absolute; inset: 0 0 -2px; pointer-events: none;
+  background: var(--video-top-fade), linear-gradient(180deg,
+    rgba(62,94,88,0) 30%,
+    rgba(62,94,88,.08) 40%,
+    rgba(62,94,88,.3) 50%,
+    rgba(62,94,88,.63) 60%,
+    rgba(62,94,88,.85) 70%,
+    rgba(62,94,88,.96) 80%,
+    rgba(62,94,88,.995) 90%,
+    #3e5e58 calc(100% - 8px));
+}
 .product-video-copy { position: absolute; inset: auto 0 clamp(32px, 5vw, 72px); z-index: 1; }
 .product-video .sec-head { max-width: 760px; margin: 0; }
 .product-video h2 { max-width: 24ch; color: #fff; font-size: clamp(2rem, 3.5vw, 3.5rem); line-height: 1.12; }
@@ -218,12 +232,20 @@ footer p { max-width: 75ch; }
 
 /* Keep the desktop's full-bleed media and caption in one composition on phones. */
 @media (max-width: 760px) {
-  .product-video { background: #05221f; }
-  .product-video video { position: absolute; inset: 0 0 auto; height: auto; aspect-ratio: 4 / 3; object-fit: cover; object-position: center; }
-  /* Match the video's height and reach the caption's solid background before its edge.
-     Reuse the existing overlay: no live blur, extra layers, or per-frame JS. */
-  .product-video::after { inset: 0 0 auto; aspect-ratio: 4 / 3; background: linear-gradient(180deg, rgba(5,34,31,0) 30%, rgba(5,34,31,.08) 45%, rgba(5,34,31,.4) 65%, rgba(5,34,31,.82) 84%, #05221f 98%); }
-  .product-video-copy { position: relative; inset: auto; padding-block: calc(75vw - 12px) 32px; }
+  /* Extend the image behind the heading, keeping the caption at its original height. */
+  .product-video-media { aspect-ratio: 1 / 1; }
+  .product-video-media::after {
+    background: var(--video-top-fade), linear-gradient(180deg,
+      rgba(62,94,88,0) 30%,
+      rgba(62,94,88,.04) 40%,
+      rgba(62,94,88,.14) 50%,
+      rgba(62,94,88,.39) 60%,
+      rgba(62,94,88,.74) 70%,
+      rgba(62,94,88,.87) 80%,
+      rgba(62,94,88,.96) 90%,
+      #3e5e58 calc(100% - 8px));
+  }
+  .product-video-copy { position: relative; inset: auto; margin-top: calc(-25% - 12px); padding-bottom: 32px; }
   .product-video h2 { max-width: 22ch; font-size: clamp(1.8rem, 6.5vw, 2.5rem); line-height: 1.13; }
   .product-video .sec-head h2 { margin-bottom: 14px; }
   .product-video .lead { max-width: 32ch; font-size: 1rem; }
