@@ -218,9 +218,11 @@ footer p { max-width: 75ch; }
 
 /* Keep the desktop's full-bleed media and caption in one composition on phones. */
 @media (max-width: 760px) {
-  .product-video { background: var(--surface2); }
+  .product-video { background: #05221f; }
   .product-video video { position: absolute; inset: 0 0 auto; height: auto; aspect-ratio: 4 / 3; object-fit: cover; object-position: center; }
-  .product-video::after { background: linear-gradient(180deg, rgba(5,34,31,0), rgba(5,34,31,.03) 35%, rgba(5,34,31,.68) 65%, rgba(5,34,31,.82)); }
+  /* Match the video's height and reach the caption's solid background before its edge.
+     Reuse the existing overlay: no live blur, extra layers, or per-frame JS. */
+  .product-video::after { inset: 0 0 auto; aspect-ratio: 4 / 3; background: linear-gradient(180deg, rgba(5,34,31,0) 30%, rgba(5,34,31,.08) 45%, rgba(5,34,31,.4) 65%, rgba(5,34,31,.82) 84%, #05221f 98%); }
   .product-video-copy { position: relative; inset: auto; padding-block: calc(75vw - 12px) 32px; }
   .product-video h2 { max-width: 22ch; font-size: clamp(1.8rem, 6.5vw, 2.5rem); line-height: 1.13; }
   .product-video .sec-head h2 { margin-bottom: 14px; }
