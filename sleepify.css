@@ -69,6 +69,19 @@ section { padding-block: clamp(64px, 7vw, 96px); }
 .hero-next a { display: inline-flex; align-items: center; gap: 12px; min-height: 44px; font-size: .9375rem; text-decoration: none; }
 .hero-next svg { width: 20px; height: 20px; }
 
+/* The hosted player is created only after a click; a local poster keeps initial loading light. */
+.intro-video-section { padding-block: 16px 0; }
+.intro-video { position: relative; aspect-ratio: 16 / 9; overflow: hidden; border-radius: 16px; background: var(--ink); }
+.intro-video-preview { position: absolute; inset: 0; display: block; color: #fff; }
+.intro-video-preview img { width: 100%; height: 100%; object-fit: cover; }
+.intro-video-preview:focus-visible, .intro-video iframe:focus-visible { outline-offset: -4px; }
+.intro-video-action { position: absolute; bottom: clamp(16px, 3vw, 32px); left: clamp(16px, 3vw, 32px); display: inline-flex; align-items: center; gap: 12px; min-height: 48px; padding: 12px 16px; border-radius: 12px; background: var(--accent-dark); font-size: 1rem; font-weight: 600; }
+.intro-video-preview:hover .intro-video-action { background: var(--accent); }
+.intro-video-action svg { width: 24px; height: 24px; flex: none; }
+.intro-video-duration { font-size: .875rem; font-weight: 400; color: #d5eee9; }
+.intro-video iframe { position: absolute; inset: 0; display: block; width: 100%; height: 100%; border: 0; opacity: 0; pointer-events: none; }
+.intro-video.is-loaded iframe { opacity: 1; pointer-events: auto; }
+
 /* An honest sample, with the explanation alongside the evidence. */
 .report-grid { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); gap: clamp(28px, 4vw, 48px); align-items: start; }
 .report-panel { min-width: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: clamp(20px, 3vw, 32px); }

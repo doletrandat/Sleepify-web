@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;800&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="sleepify.css?v=mobile-video-bleed">
+  <link rel="stylesheet" href="sleepify.css?v=mux-intro-video">
 </head>
 <body>
   <a class="skip-link" href="#thiet-bi">Đến nội dung chính</a>
@@ -36,9 +36,27 @@
         </div>
       </div>
       <div class="wrap hero-next">
-        <a href="#bao-cao">Khám phá Sleepify <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v16m-6-6 6 6 6-6" /></svg></a>
+        <a href="#gioi-thieu">Khám phá Sleepify <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v16m-6-6 6 6 6-6" /></svg></a>
       </div>
     </div>
+
+    <section id="gioi-thieu" class="intro-video-section" aria-label="Video giới thiệu Sleepify">
+      <div class="wrap">
+        <div class="intro-video">
+          <a class="intro-video-preview"
+            href="https://player.mux.com/Mh6hHQtg02earRebnjl3TDxpAT4J00ghgeV3BxFfJU5cA?metadata-video-title=Sleepify+Showcase&amp;video-title=Sleepify+Showcase&amp;thumbnail-time=47&amp;autoplay=true&amp;accent-color=%23177b73"
+            aria-label="Xem video giới thiệu Sleepify, 1 phút 50 giây">
+            <img src="assets/sleepify-intro-poster.webp" width="1280" height="720" loading="lazy" decoding="async"
+              alt="Sleepify — giải pháp theo dõi giấc ngủ">
+            <span class="intro-video-action">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
+              <span class="intro-video-label">Xem video</span>
+              <span class="intro-video-duration">1:50</span>
+            </span>
+          </a>
+        </div>
+      </div>
+    </section>
 
     <section id="bao-cao" aria-labelledby="report-heading">
       <div class="wrap">
@@ -102,11 +120,13 @@
     <section id="thiet-bi" aria-labelledby="devices-heading">
       <figure class="product-video">
         <div class="product-video-media">
-          <video autoplay muted loop playsinline preload="auto" disablepictureinpicture disableremoteplayback
+          <video muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback
+            data-mobile-src="assets/sleepify-webloop-mobile.mp4"
+            data-native-src="assets/sleepify-webloop-mobile-native.mp4"
             width="1920" height="1080" poster="assets/sleepify-product-video-poster.jpg"
             aria-label="Video giới thiệu bộ thiết bị Sleepify" aria-describedby="product-video-caption">
-            <source src="assets/sleepify-webloop.mp4" type="video/mp4">
-            <a href="assets/sleepify-webloop.mp4">Xem video bộ thiết bị Sleepify.</a>
+            <source src="assets/sleepify-webloop.mp4?v=progressive" type="video/mp4">
+            <a href="assets/sleepify-webloop.mp4?v=progressive">Xem video bộ thiết bị Sleepify.</a>
           </video>
         </div>
         <div class="product-video-copy">
@@ -445,7 +465,8 @@
       <p>Sleepify hỗ trợ sàng lọc và theo dõi, không thay thế chẩn đoán của bác sĩ. Sản phẩm đang được phát triển.</p>
     </div>
   </footer>
-  <script src="video-loop.js"></script>
+  <script src="video-loop.js?v=progressive"></script>
+  <script src="intro-video.js"></script>
   <script>
     (function () {
       var fig = document.getElementById('bodyFig');
